@@ -6,4 +6,5 @@ export default {
     lightGrey: '#E0E3DF',
     grey: '#A6A4A3',
   },
+  defaultFont: 'Avenir-Heavy',
 };

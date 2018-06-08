@@ -5,8 +5,9 @@ import vars from '../vars';
 
 export default StyleSheet.create({
   itemsList: {
-    backgroundColor: 'red',
+    marginTop: 30,
     paddingTop: 30,
     paddingBottom: 30,
+    paddingHorizontal: 50,
   },
 });

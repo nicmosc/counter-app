@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import autobind from 'autobind-decorator';
+import v4 from 'uuid/v4';
 
 import ItemsList from '../components/ItemsList';
+import AddItem from '../components/AddItem';
 
 import styles from '../styles/routes/main';
 
@@ -12,12 +14,8 @@ class Main extends React.Component {
   state = {
     items: {
       1: {
-        label: 'BURGERS',
-        count: 1,
-      },
-      2: {
-        label: 'POOPS',
-        count: 1,
+        label: 'EXAMPLE',
+        count: 0,
       },
     },
   }
@@ -26,6 +24,7 @@ class Main extends React.Component {
     const { items } = this.state;
     return (
       <View style={styles.main}>
+        <AddItem onPressAddItem={this._handleAddItem} />
         <View style={styles.items}>
           <ItemsList items={items} onPressIncrease={this._handleIncreaseCount} />
         </View>
@@ -42,6 +41,20 @@ class Main extends React.Component {
         [id]: {
           ...items[id],
           count: items[id].count + 1,
+        },
+      },
+    });
+  }
+
+  @autobind
+  _handleAddItem(label) {
+    const { items } = this.state;
+    this.setState({
+      items: {
+        ...items,
+        [v4()]: {
+          label,
+          count: 0,
         },
       },
     });

@@ -12,7 +12,7 @@ export default StyleSheet.create({
     flex: 1,
     color: vars.colors.white,
     textAlign: 'right',
-    fontFamily: 'Avenir-Heavy',
+    fontFamily: vars.defaultFont,
   },
   footer: {
     display: 'flex',
@@ -21,7 +21,7 @@ export default StyleSheet.create({
     marginTop: 15,
   },
   label: {
-    fontFamily: 'Avenir-Heavy',
-    color: vars.colors.white,
+    fontFamily: vars.defaultFont,
+    color: vars.colors.lightGrey,
   },
 });
