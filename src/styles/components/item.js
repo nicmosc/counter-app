@@ -5,7 +5,8 @@ import vars from '../vars';
 
 export default StyleSheet.create({
   item: {
-    marginBottom: 25,
+    marginBottom: 15,
+    marginTop: 15,
   },
   count: {
     flex: 1,
