@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, AsyncStorage } from 'react-native';
 import autobind from 'autobind-decorator';
 import v4 from 'uuid/v4';
 import omit from 'lodash/omit';
@@ -11,14 +11,22 @@ import styles from '../styles/routes/main';
 
 
 class Main extends React.Component {
-  // NOTE: migrate this to local storage eventually
   state = {
-    items: {
-      1: {
-        label: 'EXAMPLE',
-        count: 0,
-      },
-    },
+    items: {},
+  }
+
+  async componentDidMount() {
+    try {
+      const storedItems = await AsyncStorage.getItem('@counter-store:items');
+      if (storedItems) {
+        this.setState({
+          items: JSON.parse(storedItems),
+        });
+      }
+    }
+    catch (err) {
+      console.error(err);
+    }
   }
 
   render() {
@@ -38,9 +46,9 @@ class Main extends React.Component {
   }
 
   @autobind
-  _handleIncreaseCount(id) {
+  async _handleIncreaseCount(id) {
     const { items } = this.state;
-    this.setState({
+    await this.setState({
       items: {
         ...items,
         [id]: {
@@ -49,12 +57,13 @@ class Main extends React.Component {
         },
       },
     });
+    this._saveToStorage();
   }
 
   @autobind
-  _handleResetItem(id) {
+  async _handleResetItem(id) {
     const { items } = this.state;
-    this.setState({
+    await this.setState({
       items: {
         ...items,
         [id]: {
@@ -63,12 +72,13 @@ class Main extends React.Component {
         },
       },
     });
+    this._saveToStorage();
   }
 
   @autobind
-  _handleAddItem(label) {
+  async _handleAddItem(label) {
     const { items } = this.state;
-    this.setState({
+    await this.setState({
       items: {
         ...items,
         [v4()]: {
@@ -77,12 +87,25 @@ class Main extends React.Component {
         },
       },
     });
+    this._saveToStorage();
   }
 
   @autobind
-  _handleDeleteItem(id) {
+  async _handleDeleteItem(id) {
     const { items } = this.state;
-    this.setState({ items: omit(items, [id]) });
+    await this.setState({ items: omit(items, [id]) });
+    this._saveToStorage();
+  }
+
+  @autobind
+  async _saveToStorage() {
+    const { items } = this.state;
+    try {
+      await AsyncStorage.setItem('@counter-store:items', JSON.stringify(items));
+    }
+    catch (error) {
+      console.log("Error saving data" + error);
+    }
   }
 }
 
