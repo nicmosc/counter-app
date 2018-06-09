@@ -27,6 +27,6 @@
     "android": {
       "package": "com.nicmosc.counter"
     },
-    "primaryColor":
+    "primaryColor": "#191B29"
   }
 }

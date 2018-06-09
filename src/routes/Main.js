@@ -3,6 +3,7 @@ import { View, Text, AsyncStorage } from 'react-native';
 import autobind from 'autobind-decorator';
 import v4 from 'uuid/v4';
 import omit from 'lodash/omit';
+import { AppLoading } from 'expo';
 
 import ItemsList from '../components/ItemsList';
 import AddItem from '../components/AddItem';
@@ -14,24 +15,19 @@ import styles from '../styles/routes/main';
 class Main extends React.Component {
   state = {
     items: {},
-  }
-
-  async componentDidMount() {
-    try {
-      const storedItems = await AsyncStorage.getItem('@counter-store:items');
-      if (storedItems) {
-        this.setState({
-          items: JSON.parse(storedItems),
-        });
-      }
-    }
-    catch (err) {
-      console.error(err);
-    }
+    ready: false,
   }
 
   render() {
-    const { items } = this.state;
+    const { items, ready } = this.state;
+    if (! ready) {
+      return (
+        <AppLoading
+          startAsync={this._loadLocalItems}
+          onFinish={() => this.setState({ ready: true })}
+          onError={console.warn} />
+      );
+    }
     return (
       <View style={styles.main}>
         <AddItem onPressAddItem={this._handleAddItem} />
@@ -52,6 +48,22 @@ class Main extends React.Component {
         </View>
       </View>
     );
+  }
+
+  @autobind
+  async _loadLocalItems() {
+    try {
+      const storedItems = await AsyncStorage.getItem('@counter-store:items');
+      if (storedItems) {
+        this.setState({
+          items: JSON.parse(storedItems),
+          ready: true,
+        });
+      }
+    }
+    catch (err) {
+      console.error(err);
+    }
   }
 
   @autobind
