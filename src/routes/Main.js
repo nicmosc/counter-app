@@ -6,6 +6,7 @@ import omit from 'lodash/omit';
 
 import ItemsList from '../components/ItemsList';
 import AddItem from '../components/AddItem';
+import Placeholder from '../components/Placeholder';
 
 import styles from '../styles/routes/main';
 
@@ -35,11 +36,18 @@ class Main extends React.Component {
       <View style={styles.main}>
         <AddItem onPressAddItem={this._handleAddItem} />
         <View style={styles.items}>
-          <ItemsList
-            items={items}
-            onPressIncrease={this._handleIncreaseCount}
-            onPressReset={this._handleResetItem}
-            onPressDelete={this._handleDeleteItem} />
+          {do{
+            if (Object.keys(items).length === 0) {
+              <Placeholder />
+            }
+            else {
+              <ItemsList
+                items={items}
+                onPressIncrease={this._handleIncreaseCount}
+                onPressReset={this._handleResetItem}
+                onPressDelete={this._handleDeleteItem} />
+            }
+          }}
         </View>
       </View>
     );
