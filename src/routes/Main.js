@@ -45,7 +45,8 @@ class Main extends React.Component {
                 items={items}
                 onPressIncrease={this._handleIncreaseCount}
                 onPressReset={this._handleResetItem}
-                onPressDelete={this._handleDeleteItem} />
+                onPressDelete={this._handleDeleteItem}
+                onPressUndo={this._handleUndo} />
             }
           }}
         </View>
@@ -77,6 +78,21 @@ class Main extends React.Component {
         [id]: {
           ...items[id],
           count: 0,
+        },
+      },
+    });
+    this._saveToStorage();
+  }
+
+  @autobind
+  async _handleUndo(id) {
+    const { items } = this.state;
+    await this.setState({
+      items: {
+        ...items,
+        [id]: {
+          ...items[id],
+          count: items[id].count > 0 ? items[id].count - 1 : items[id].count,
         },
       },
     });

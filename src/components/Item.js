@@ -17,7 +17,7 @@ const DeleteButton = ({ onPress }) => {
   return (
     <TouchableHighlight
       onPress={onPress}
-      style={styles.deleteButton}
+      style={[ styles.button, styles.deleteButton ]}
       underlayColor={shadeColor(vars.colors.red, -0.3)}>
       <Text style={styles.buttonLabel}>Remove</Text>
     </TouchableHighlight>
@@ -29,9 +29,21 @@ const ResetButton = ({ onPress }) => {
   return (
     <TouchableHighlight
       onPress={onPress}
-      style={styles.resetButton}
-      underlayColor={shadeColor(vars.colors.grey, -0.3)}>
+      style={[ styles.button, styles.resetButton ]}
+      underlayColor={shadeColor(vars.colors.orange, -0.3)}>
       <Text style={styles.buttonLabel}>Reset</Text>
+    </TouchableHighlight>
+  );
+}
+
+
+const UndoButton = ({ onPress }) => {
+  return (
+    <TouchableHighlight
+      onPress={onPress}
+      style={[ styles.button, styles.undoButton ]}
+      underlayColor={shadeColor(vars.colors.grey, -0.3)}>
+      <Text style={styles.buttonLabel}>Undo</Text>
     </TouchableHighlight>
   );
 }
@@ -63,6 +75,7 @@ class Item extends React.Component {
           <Swipeable
             onRef={(ref) => this.swipeable = ref}
             rightButtons={[
+              <UndoButton onPress={this._handlePressUndo} />,
               <ResetButton onPress={this._handlePressReset} />,
               <DeleteButton onPress={onPressDelete} />
             ]}
@@ -98,6 +111,13 @@ class Item extends React.Component {
     const { onPressReset } = this.props;
     this.swipeable.recenter();
     onPressReset(id);
+  }
+
+  @autobind
+  _handlePressUndo(id) {
+    const { onPressUndo } = this.props;
+    this.swipeable.recenter();
+    onPressUndo(id);
   }
 }
 

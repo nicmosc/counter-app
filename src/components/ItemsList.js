@@ -14,7 +14,7 @@ class ItemsList extends React.Component {
 
   render() {
     const { scrollable, scrolling } = this.state;
-    const { items, onPressIncrease, onPressReset, onPressDelete } = this.props;
+    const { items, onPressIncrease, onPressReset, onPressDelete, onPressUndo } = this.props;
     return (
       <ScrollView
         contentContainerStyle={styles.itemsList}
@@ -31,7 +31,8 @@ class ItemsList extends React.Component {
             item={items[itemKey]}
             onPressIncrease={onPressIncrease}
             onPressReset={() => onPressReset(itemKey)}
-            onPressDelete={() => onPressDelete(itemKey)} />
+            onPressDelete={() => onPressDelete(itemKey)}
+            onPressUndo={() => onPressUndo(itemKey)} />
         ))}
       </ScrollView>
     );

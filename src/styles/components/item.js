@@ -28,21 +28,23 @@ export default StyleSheet.create({
     fontFamily: vars.defaultFont,
     color: vars.colors.lightGrey,
   },
-  deleteButton: {
-    backgroundColor: 'red',
+  button: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
   },
+  deleteButton: {
+    backgroundColor: 'red',
+  },
   resetButton: {
+    backgroundColor: vars.colors.orange,
+  },
+  undoButton: {
     backgroundColor: vars.colors.grey,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   buttonLabel: {
     color: vars.colors.white,
-    marginLeft: 10,
+    marginLeft: 12,
     textAlign: 'center',
   },
 });
