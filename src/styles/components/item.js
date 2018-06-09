@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { shadeColor } from '../../utils/styles';
 import vars from '../vars';
 
 
@@ -26,8 +27,6 @@ export default StyleSheet.create({
   label: {
     fontFamily: vars.defaultFont,
     color: vars.colors.lightGrey,
-  },
-  buttonContainer: {
   },
   deleteButton: {
     backgroundColor: 'red',

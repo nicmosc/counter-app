@@ -1,21 +1,24 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, Animated, Dimensions, Easing } from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import autobind from 'autobind-decorator';
 
-import { lightenColor } from '../utils/styles';
+import { shadeColor } from '../utils/styles';
 import vars from '../styles/vars';
 
 import styles from '../styles/components/item';
 
 
 const countMinFontSize = 50;
-const countMaxFontSize = 150;
+const countMaxFontSize = 130;
 
 
 const DeleteButton = ({ onPress }) => {
   return (
-    <TouchableHighlight onPress={onPress} style={styles.deleteButton}>
+    <TouchableHighlight
+      onPress={onPress}
+      style={styles.deleteButton}
+      underlayColor={shadeColor(vars.colors.red, -0.3)}>
       <Text style={styles.buttonLabel}>Remove</Text>
     </TouchableHighlight>
   );
@@ -27,7 +30,7 @@ const ResetButton = ({ onPress }) => {
     <TouchableHighlight
       onPress={onPress}
       style={styles.resetButton}
-      underlayColor={lightenColor(vars.colors.grey, 50)}>
+      underlayColor={shadeColor(vars.colors.grey, -0.3)}>
       <Text style={styles.buttonLabel}>Reset</Text>
     </TouchableHighlight>
   );
@@ -52,8 +55,9 @@ class Item extends React.Component {
       onSwipeRelease,
       onPressDelete,
     } = this.props;
-    const { count, label } = item;
-    const countFontSize = count <= countMaxFontSize ? (count >= countMinFontSize ? count : countMinFontSize) : countMaxFontSize;
+    const { label, count } = item;
+    const range = countMaxFontSize - countMinFontSize;
+    const countFontSize = (((count - 0) * range) / 1000) + countMinFontSize;
     return (
         <View style={styles.item}>
           <Swipeable
@@ -62,11 +66,6 @@ class Item extends React.Component {
               <ResetButton onPress={this._handlePressReset} />,
               <DeleteButton onPress={onPressDelete} />
             ]}
-            rightActionActivationDistance={200}
-            onRightActionActivate={() => this.setState({ leftActionActivated: true })}
-            onRightActionDeactivate={() => this.setState({ leftActionActivated: false })}
-            // onRightActionComplete={}
-            rightButtonContainerStyle={styles.buttonContainer}
             onSwipeStart={onSwipeStart}
             onSwipeRelease={onSwipeRelease}
             style={styles.swipeable}>
