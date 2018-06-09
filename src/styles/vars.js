@@ -6,6 +6,8 @@ export default {
     orange: '#ef7f1f',
     lightGrey: '#E0E3DF',
     grey: '#A6A4A3',
+    darkGrey: '#25232F',
+    darkerGrey: '#191B29',
   },
   defaultFont: 'Avenir-Heavy',
 };

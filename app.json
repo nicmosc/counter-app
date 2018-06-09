@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "counter-app",
-    "description": "This project is really great.",
+    "description": "Simple counter app.",
     "slug": "counter-app",
     "privacy": "public",
     "sdkVersion": "27.0.0",
@@ -11,8 +11,8 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#191B29"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,7 +21,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nicmosc.counter"
+    },
+    "android": {
+      "package": "com.nicmosc.counter"
+    },
+    "primaryColor":
   }
 }
