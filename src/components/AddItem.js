@@ -45,6 +45,7 @@ class AddItem extends React.Component {
                 style={[ styles.input, { fontSize }]}
                 onChangeText={this._handleOnChangeText}
                 autoFocus={true}
+                maxLength={25}
                 autoCapitalize="characters"
                 autoCorrect={false}
                 onContentSizeChange={this._handleContentSizeChange}
