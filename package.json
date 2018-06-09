@@ -4,8 +4,10 @@
   "dependencies": {
     "autobind-decorator": "^2.1.0",
     "expo": "^27.0.1",
+    "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
+    "react-native-swipeable": "^0.6.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
