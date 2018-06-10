@@ -2,7 +2,6 @@ import React from 'react';
 import { ScreenOrientation } from 'expo';
 
 import Root from './routes/Root';
-import FontsViewer from './routes/FontsViewer';
 
 
 // only allow portrait up

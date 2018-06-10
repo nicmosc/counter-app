@@ -1,7 +1,6 @@
 import React from 'react';
 import { LinearGradient } from 'expo';
 
-import FontsViewer from './FontsViewer';
 import Main from './Main';
 
 import styles from '../styles/routes/root';
