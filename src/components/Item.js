@@ -93,8 +93,7 @@ class Item extends React.Component {
                   },
                 ]}
                 onPress={() => onPressIncrease(id)}
-                numberOfLines={1}
-                ellipsizeMode="clip">{count}</Text>
+                numberOfLines={1}>{count}</Text>
               <View style={styles.footer}>
                 <Text style={styles.label}>
                   {label}

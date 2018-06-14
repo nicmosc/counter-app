@@ -9,5 +9,5 @@ export default {
     darkGrey: '#25232F',
     darkerGrey: '#191B29',
   },
-  defaultFont: 'Avenir-Heavy',
+  defaultFont: 'Open-Sans-Bold',
 };

@@ -8,8 +8,8 @@ export default StyleSheet.create({
   addItem: {
     padding: 5,
     paddingLeft: 20,
-    position: 'absolute',
-    zIndex: 2,
+    // position: 'absolute',
+    // zIndex: 2,
   },
   label: {
     color: vars.colors.grey,

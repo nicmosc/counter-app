@@ -3,7 +3,7 @@ import { View, Text, AsyncStorage } from 'react-native';
 import autobind from 'autobind-decorator';
 import v4 from 'uuid/v4';
 import omit from 'lodash/omit';
-import { AppLoading } from 'expo';
+import { AppLoading, Font } from 'expo';
 
 import ItemsList from '../components/ItemsList';
 import AddItem from '../components/AddItem';
@@ -55,15 +55,15 @@ class Main extends React.Component {
     try {
       const storedItems = await AsyncStorage.getItem('@counter-store:items');
       if (storedItems) {
-        this.setState({
-          items: JSON.parse(storedItems),
-          ready: true,
-        });
+        this.setState({ items: JSON.parse(storedItems) });
       }
     }
     catch (err) {
       console.error(err);
     }
+    await Font.loadAsync({
+      'Open-Sans-Bold': require('../../assets/fonts/OpenSans-SemiBold.ttf'),
+    });
   }
 
   @autobind
