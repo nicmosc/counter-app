@@ -3,9 +3,9 @@
 Simple React Native app to count things. Built using Expo.
 
 <p float="left">
-  <img height="120" src="assets/icon-preview.png">
+  <img height="150" src="assets/icon-preview.png">
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img height="300" src="assets/screenshot.png">
+  <img height="500" src="assets/screenshot.png">
 </p>
 
 <!-- ![alt-text-1](assets/screenshot.png "title-1") ![alt-text-2](assets/icon.png "title-2") -->
