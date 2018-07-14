@@ -22,6 +22,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     flexDirection: 'row',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   input: {
     color: vars.colors.white,

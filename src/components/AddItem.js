@@ -38,7 +38,7 @@ class AddItem extends React.Component {
           onRequestClose={() => {
             alert('Modal has been closed.');
           }}>
-          <BlurView intensity={100} tint="dark" style={StyleSheet.absoluteFill}>
+          <BlurView intensity={90} tint="dark" style={StyleSheet.absoluteFill}>
             <KeyboardAvoidingView style={styles.modal} behavior="padding" enabled>
               <TextInput
                 value={label}
